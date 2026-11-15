@@ -1,6 +1,6 @@
 # Rencana Dashboard Warga Kabupaten Sukoharjo
 
-**Status dokumen:** rencana, belum dieksekusi. Simpan sebagai `dasbor_sukoharjo/referensi/rencana_dasbor.md` sebelum Tahap 0. Prompt Sonnet di bagian 8 membaca bagian tertentu dari berkas ini, jadi judul bagian jangan diubah.
+**Status dokumen:** rencana; T0 dan T1 sudah dieksekusi (lihat "Catatan revisi" di bawah dan status tahap di 8.0). Simpan sebagai `dasbor_sukoharjo/referensi/rencana_dasbor.md` sebelum Tahap 0. Prompt Sonnet di bagian 8 membaca bagian tertentu dari berkas ini, jadi judul bagian jangan diubah.
 
 **Label kepastian yang dipakai di seluruh dokumen:**
 
@@ -8,6 +8,18 @@
 - **[D] Dugaan:** kemungkinan ada atau benar, tetapi perlu dicek. URL atau perilaku bertanda [D] wajib diuji sebelum dipakai.
 - **[?] Tidak diketahui:** belum ada dasar yang cukup.
 - **[U] Usulan:** keputusan desain dari perencana. Boleh diubah pemilik.
+
+## Catatan revisi (diperbarui 2026-11-16)
+Keputusan yang berubah setelah T0 dan T1. Bila bertentangan dengan bagian lain, catatan ini yang berlaku.
+1. **Harga [T]:** jalur A1 = Panel Harga Bapanas level **Konsumen** (`level_harga_id=3`, `province_id=13`, `city_id=196`). 24 komoditas bernilai > 0, 8 dari 8 komoditas inti tercakup. Level Produsen (`level_harga_id=1`) hanya mengisi 3 dari 8 komoditas inti dan tidak dipakai. Jalur C menjadi cadangan opsional.
+2. **Harga diambil dari PC pemilik, bukan Actions [T]:** API Bapanas timeout dari Actions. Rencana Jaringan B (10.1) dijalankan untuk harga: `skrip/ambil_harga.py` dan `skrip/jadwal_harga.ps1`, tugas Task Scheduler `DasborHarga` (tiap 3 jam, saat PC menyala), push ke `main`. Cabang `data` seperti di 10.1 belum dibuat; putuskan di T4 (deploy).
+3. **Penyebab timeout belum terbukti [?]:** panggilan dari PC lokal juga timeout pada 2026-11-16 00:03-00:05 (setelah sukses 23:57). Dugaan "IP luar negeri diblokir" melemah; API mungkin lambat atau berkala. Uji banding Actions dan PC pada jam yang sama masih terbuka.
+4. **Overpass [?]:** menurut laporan pemilik, Overpass timeout dari Actions. T3 dan T7 sebaiknya mengambil data Overpass dari PC lalu meng-commit hasilnya. Isi T3 dan T7 belum disesuaikan; lakukan saat tahap itu disiapkan.
+5. **Sumber harga tanpa riwayat [T]:** hanya hari ini dan kemarin. Riwayat dibangun dari snapshot harian (`harga_riwayat.json`, maks. 400 hari). `rata_7h` dan `ubah_7h_persen` bernilai `null` sampai ada 3 titik.
+6. **Skema 6.4.7:** `satuan` boleh `kg` atau `liter`. Pemetaan kategori: garam = `bumbu`; ikan, daging, telur = `protein`; beras, jagung, kedelai, tepung = `pokok`; gula dan minyak goreng = `minyak_gula`; bawang dan cabai = `bumbu`. Pemetaan lengkap ada di `data/peta_komoditas.csv`.
+7. **T2 dipecah** menjadi T2A (fondasi) dan T2B (tampilan dan alat cek visual). Total BATAS 60 alat, bukan 45.
+8. **BLOK UMUM (8.0.1)** diperbarui: kalimat pembuka, aturan 1, 3, 4, 6, 9, 12, dan aturan 14 baru berisi fakta T0-T1.
+9. **Masih terbuka:** ToS Panel Harga belum disimpan di `referensi/harga/`; keputusan cabang `data`; uji banding Actions dan PC; bukti push otomatis dari tugas `DasborHarga`.
 
 ---
 
@@ -191,6 +203,7 @@ Slug dan urutan tampilan mengikuti daftar pemilik. Kode Kemendagri [D]: diduga 3
 - Panel Harga Bapanas memakai API `https://api-panelhargav2.badanpangan.go.id/api`. `front/harga-peta-provinsi` merespons tetapi butuh `komoditas_id`. `front/komoditas` membalas 401 [T].
 - SISKAPERBAPO Jateng tidak bisa diakses dari lingkungan uji [T]. Bisa jadi ini pemblokiran IP non-Indonesia atau situs memang mati [?].
 - PIHPS BI bisa diakses [T]. Cakupan Sukoharjo [?]. Dugaan: PIHPS meliputi kota-kota survei di Jateng, termasuk Surakarta [D]. Sukoharjo berbatasan langsung dengan Kota Surakarta.
+- Hasil T1 [T]: Panel Harga Bapanas menyediakan Kab. Sukoharjo (`city_id=196`) tanpa login. Level Konsumen (`level_harga_id=3`) mengisi 24 komoditas, termasuk 8 dari 8 komoditas inti. Tidak ada riwayat. Timeout dari Actions (lihat Catatan revisi).
 
 ### 5.2 Jalur bertingkat
 
@@ -203,13 +216,15 @@ Slug dan urutan tampilan mengikuti daftar pemilik. Kode Kemendagri [D]: diduga 3
 
 **Rekomendasi [U]:** pakai A bila T1 berhasil. Bila tidak, pakai **B + C** (tren otomatis berlabel jelas dan cek lokal pekanan). Jangan menampilkan angka B sebagai angka Sukoharjo.
 
+**Hasil T1 [T]:** jalur A1 (Panel Harga level Konsumen) berhasil. Jalur B dan C tidak diperlukan untuk komoditas inti. Pengambilan data dari PC pemilik karena Actions timeout.
+
 ### 5.3 Daftar komoditas inti
 Delapan komoditas utama tampil di Beranda (6 di HP): beras medium, cabai rawit merah, cabai merah keriting, bawang merah, bawang putih, telur ayam ras, minyak goreng, gula pasir. Komoditas lain di tab Harga: beras premium, daging ayam ras, daging sapi, kedelai, tepung terigu, jagung, cabai merah besar. Ikuti daftar dan satuan yang dipakai sumber terpilih. `komoditas_id` sumber dipetakan ke `id` internal kita di `data/peta_komoditas.csv`, tanpa mengarang ID.
 
 ### 5.4 Yang disiapkan pemilik sebelum T1 (sekitar 45 menit)
 1. Buka situs Panel Harga Bapanas di Chrome atau Edge desktop.
 2. Tekan F12, buka tab **Network**, pilih filter **Fetch/XHR**, centang **Preserve log**, lalu muat ulang halaman.
-3. Di UI, pilih tingkat kabupaten/kota bila ada, provinsi Jawa Tengah, Kabupaten Sukoharjo, komoditas cabai rawit merah, dan rentang waktu terpanjang.
+3. Di UI, pilih tingkat kabupaten/kota bila ada, provinsi Jawa Tengah, Kabupaten Sukoharjo, komoditas cabai rawit merah, dan rentang waktu terpanjang. Ulangi untuk **setiap tingkat harga** yang ada di UI (Produsen, Konsumen, dan lainnya): T1 menemukan bahwa level Produsen hanya mengisi 3 dari 8 komoditas inti.
 4. Untuk tiap permintaan yang responsnya berisi angka harga, daftar komoditas, atau daftar wilayah:
    - klik kanan, pilih **Copy → Copy as cURL (bash)**, simpan ke `referensi/harga/panelharga_<isi>.txt`;
    - buka tab Response, simpan ke `referensi/harga/panelharga_<isi>_respons.json` (bila lebih dari 1 MB, simpan sebagian awal saja);
@@ -794,6 +809,9 @@ Di desktop, hero cuaca mengambil 2 kolom dan kartu sholat serta hari ini ada di 
 - Satu tahap dijalankan dalam satu sesi Sonnet baru. Tempel **Blok Umum** lalu prompt tahap.
 - Sebelum menjalankan tahap, pemilik memastikan prasyaratnya sudah ada dan mengisi bagian `[ISI: ...]`.
 - T1 bisa berjalan paralel dengan T2 dan T3 setelah T0 selesai.
+- Berkas hasil di bawah `hasil/situs/` ditulis relatif ke folder itu kecuali disebut lain (`skrip/`, `referensi/`, `data/` di akar repo).
+- **Status tahap (2026-11-16):** T0 selesai. T1 selesai (lihat Catatan revisi). T2A dan T2B belum. T3 dan seterusnya belum.
+- Setiap akhir tahap, eksekutor memperbarui memori Serena `dasbor_sukoharjo/core`; pemilik memperbarui baris status ini dan Catatan revisi bila keputusan berubah.
 
 ### 8.0.1 BLOK UMUM (tempel di awal setiap prompt tahap)
 ```
@@ -801,8 +819,10 @@ Di desktop, hero cuaca mengambil 2 kolom dan kartu sholat serta hari ini ada di 
 Kamu eksekutor proyek "dasbor_sukoharjo": dashboard statis untuk warga Kabupaten Sukoharjo
 (12 kecamatan, slug: weru, bulu, tawangsari, sukoharjo, nguter, bendosari, polokarto, mojolaban,
 grogol, baki, gatak, kartasura). Situs = HTML/CSS/JS biasa (ES modules, tanpa build, tanpa npm)
-di hasil/situs/. Data = JSON dibuat skrip Python stdlib di skrip/, diperbarui GitHub Actions,
-dideploy ke GitHub Pages. Bukan situs resmi pemerintah.
+di hasil/situs/. Data = JSON dibuat skrip Python stdlib di skrip/. Sumber yang terjangkau dari
+GitHub Actions diperbarui di sana; harga (Panel Harga Bapanas) diambil dari PC pemilik lewat
+tugas terjadwal DasborHarga (skrip/jadwal_harga.ps1) dan didorong ke main. Situs dideploy ke
+GitHub Pages. Bukan situs resmi pemerintah.
 Folder kerja: c:\Users\Admin\Documents\proyek_kiro\dasbor_sukoharjo (repo git sendiri).
 Rencana induk: referensi/rencana_dasbor.md. Baca HANYA bagian yang disebut prompt: cari nomor
 baris judulnya dengan Select-String (keluaran dipotong), lalu read_file dengan offset/limit.
@@ -810,23 +830,29 @@ baris judulnya dengan Select-String (keluaran dipotong), lalu read_file dengan o
 ATURAN
 1. PowerShell 5.1. Perintah > 300 karakter diblokir. Logika panjang ditulis ke berkas
    ($env:TEMP\<nama>.ps1/.py untuk sekali pakai, _tmp/ untuk sementara proyek), dijalankan,
-   keluarannya ditulis ke .txt, lalu baca .txt itu.
+   keluarannya ditulis ke .txt, lalu baca .txt itu. Parameter cwd tool shell diabaikan: pakai
+   path absolut. Bila keluaran kosong tanpa gema perintah, ulangi sekali. Skrip berjaringan
+   atau berdurasi panjang diberi timeout eksplisit (300000 ms).
 2. Potong semua keluaran: maksimal 40 baris (| Select-Object -First 40). Skrip Python mencetak
    ringkasan (jumlah, kunci, 3 contoh), bukan isi data.
 3. Jangan baca berkas > 20 KB utuh. Jangan baca ulang berkas yang sudah dibaca di sesi ini
-   kecuali berubah. Jangan menjelajah folder lain di workspace.
-4. Mulai sesi: baca memori Serena "dasbor_sukoharjo/core" bila ada. Untuk tahap UI, baca juga
-   referensi/komponen.md. Pakai simbol Serena untuk melihat fungsi sebelum membaca berkas utuh.
+   kecuali berubah. Jangan menjelajah folder lain di workspace. Berkas *.log diblokir
+   kiroignore: jangan dibaca dan jangan dibypass; baca status dari status.json.
+4. Mulai sesi: baca memori Serena "dasbor_sukoharjo/core" (berkas
+   .serena\memories\dasbor_sukoharjo\core.md). Untuk tahap UI, baca juga
+   referensi/komponen.md bila sudah ada. Pakai simbol Serena untuk melihat fungsi sebelum membaca berkas utuh.
 5. Nama berkas snake_case Indonesia. Skrip = kata kerja + objek. Teks UI dan komentar dalam
    bahasa Indonesia.
 6. Python hanya stdlib. Zona waktu: timezone(timedelta(hours=7)), jangan zoneinfo. Tulis berkas
-   dengan encoding="utf-8" (tanpa BOM). Jangan menulis JSON atau kode lewat Set-Content/Out-File.
+   dengan encoding="utf-8" (tanpa BOM). Jangan menulis JSON atau kode lewat Set-Content/Out-File;
+   pakai fs_write.
 7. Front-end hanya boleh memakai pustaka di hasil/situs/vendor/. Jangan menambah dependensi.
    Semua teks dari data eksternal lewat esc() sebelum masuk innerHTML.
 8. Jangan mengarang URL, endpoint, atau nama bidang API. Pakai hanya yang disebut prompt atau
    rencana. Bila bidang API berbeda dari dugaan, ikuti respons asli dan catat di laporan.
 9. Git: commit per langkah selesai: git add -A; git commit -m "tN: <ringkas>". Push hanya bila
-   prompt menyuruh. Dilarang force push, reset --hard, atau menghapus berkas pemilik.
+   prompt menyuruh, dan sebelum push selalu git pull --rebase origin main (remote bisa berisi
+   commit bot dan tugas PC). Dilarang force push, reset --hard, atau menghapus berkas pemilik.
 10. PENGHITUNG: hitung setiap panggilan tool. Tulis [alat n/BATAS] di awal setiap pesanmu.
     Pada 80% BATAS: berhenti menambah fitur, commit keadaan stabil, tulis laporan.
     Pada BATAS: berhenti total.
@@ -834,10 +860,18 @@ ATURAN
     gagal 2 kali (catat lalu lanjut tanpa sumber itu); butuh keputusan pemilik; tugas
     membutuhkan sesuatu yang tidak tertulis di prompt.
 12. Pemeriksaan visual: paling banyak 2 putaran tangkapan layar dan perbaikan per tahap.
+    PNG dilihat dengan read_file.
 13. Akhir sesi: perbarui memori Serena "dasbor_sukoharjo/core" (≤ 20 baris: tahap, status,
     berkas kunci, keputusan, masalah terbuka). Laporan akhir berisi: selesai/belum, keluaran
     cek kriteria selesai, berkas yang berubah, jumlah alat terpakai, hal yang perlu diputuskan
     pemilik.
+14. Fakta T0-T1: (a) skrip/umum.py menyediakan ambil_json, amplop, tulis_json, baca_json,
+    catat_status: pakai, jangan tulis ulang; (b) hasil/situs/data/status.json di-ignore git:
+    jangan di-add; (c) Bapanas dan Overpass jangan diasumsikan terjangkau dari Actions;
+    (d) hasil/situs/data/harga.json dan harga_riwayat.json adalah data asli yang ditulis tugas
+    terjadwal: jangan diubah, ditimpa, atau dihapus; jangan menyentuh skrip/ambil_harga.py,
+    skrip/jadwal_harga.ps1, atau tugas DasborHarga; (e) Python 3.12 dan Edge ada di
+    C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe.
 === AKHIR BLOK UMUM ===
 ```
 
@@ -933,6 +967,11 @@ dari Actions. Jangan membuat UI atau mengaktifkan Pages.
   - Tidak ada tangkapan pemilik: berhenti segera.
   - Semua kandidat butuh autentikasi atau gagal: tulis keputusan "C" (atau "B" bila provinsi berhasil) lalu berhenti.
 - **Jangan:** menebak endpoint, mencoba login, melewati captcha atau token, mengambil data lebih dari yang perlu untuk uji, atau membuat UI.
+- **Hasil aktual (selesai 2026-11-16):**
+  - Keputusan: jalur A1 level Konsumen (lihat Catatan revisi 1-3). `referensi/keputusan_harga.md` dan `data/peta_komoditas.csv` (24 baris) sudah diperbarui; `_tmp/contoh_harga.json` lolos (24 komoditas, 8/8 inti).
+  - Berkas tambahan di luar daftar awal: `skrip/ambil_harga.py`, `skrip/jadwal_harga.ps1`, `hasil/situs/data/harga.json`, `hasil/situs/data/harga_riwayat.json`, tugas `DasborHarga`.
+  - Uji Actions: timeout. Langkah sementara di `uji_jaringan.yml` dihapus pemilik sebelum hasilnya terbaca oleh eksekutor.
+  - Tangkapan pertama pemilik level Produsen; level Konsumen ditangkap pada putaran kedua (lihat 5.4 butir 3).
 
 **Prompt T1:**
 ```
@@ -953,19 +992,25 @@ Bila tangkapan tidak ada, berhenti dan minta pemilik mengikuti 5.4.
 
 ### Tahap 2: Sistem desain dan kerangka situs
 - **Tujuan:** kerangka aplikasi lengkap dengan data contoh, sistem desain final, dan alat cek tampilan.
-- **Hasil:**
-  - `index.html`, `gaya.css`, `js/*.js`, `js/tampilan/*.js` (7 tampilan, sebagian masih placeholder);
-  - `vendor/` (Leaflet 1.9.4, Chart.js 4.x UMD, ikon);
+- **Dipecah dua sesi (revisi 2026-11-16):** T2A = fondasi (vendor, CSS, HTML, JS inti, cek statis); T2B = data contoh, tampilan, alat cek visual, `komponen.md`. Alasan: satu sesi 45 alat terlalu ketat untuk sekitar 25 berkas, dan T1 menunjukkan sebagian alat habis oleh keanehan shell.
+- **Jalur berkas:** semua berkas situs berada di `hasil/situs/`. `data/contoh/` berarti `hasil/situs/data/contoh/`. Folder `data/` di akar repo hanya untuk CSV. `hasil/situs/data/harga.json` dan `harga_riwayat.json` adalah data asli dari tugas terjadwal: dilarang diubah. Mode contoh membaca `data/contoh/`, jadi tidak menyentuh berkas asli.
+- **Hasil T2A:**
+  - `vendor/` (Leaflet 1.9.4, Chart.js 4.x UMD, ikon Lucide) dan `vendor/VERSI.txt`;
   - `ikon/sprite.svg`, `logo.svg`;
+  - `index.html`, `gaya.css`;
+  - `js/format.js`, `data.js`, `komponen.js`, `grafik.js`, `peta.js`, `utama.js`;
+  - `skrip/ambil_vendor.py`, `skrip/cek_situs.py`.
+- **Hasil T2B:**
   - `data/contoh/*.json`;
-  - `skrip/ambil_vendor.py`, `skrip/cek_tampilan.ps1`, `skrip/cek_situs.py`;
+  - `js/tampilan/*.js` (7 tampilan, sebagian kerangka);
+  - `skrip/cek_tampilan.ps1`, tangkapan layar di `_tmp/layar/`;
   - `referensi/komponen.md`.
-- **Prasyarat:** T0 selesai.
-- **Langkah:**
+- **Prasyarat:** T0 dan T1 selesai. T2B juga membutuhkan T2A selesai.
+- **Langkah T2A:**
   1. `ambil_vendor.py`:
-     - unduh Leaflet `https://unpkg.com/leaflet@1.9.4/dist/` (leaflet.js, leaflet.css, images/) [D];
+     - unduh Leaflet `https://unpkg.com/leaflet@1.9.4/dist/` (leaflet.js, leaflet.css, images/) [D]. Gambar yang dicoba: layers.png, layers-2x.png, marker-icon.png, marker-icon-2x.png, marker-shadow.png [D]; bila 404, lewati dan catat;
      - unduh berkas UMD Chart.js 4 dari jsDelivr (`https://cdn.jsdelivr.net/npm/chart.js@4/dist/`; nama berkas tepat dicek lewat listing `https://data.jsdelivr.com/v1/packages/npm/chart.js` [D]; kunci ke versi pasti);
-     - unduh ikon Lucide dari `https://unpkg.com/lucide-static@<versi>/icons/<nama>.svg` [D];
+     - unduh ikon Lucide dari `https://unpkg.com/lucide-static@<versi>/icons/<nama>.svg` [D]; `<versi>` ditentukan dari listing `https://data.jsdelivr.com/v1/packages/npm/lucide-static`;
      - gabungkan ikon menjadi `sprite.svg`;
      - catat versi dan sha256 di `vendor/VERSI.txt`.
   2. `gaya.css`:
@@ -982,47 +1027,65 @@ Bila tangkapan tidak ada, berhenti dan minta pemilik mengikuti 5.4.
      - `komponen.js`: `esc`, `kartu`, `lencanaUbah`, `metaSumber`, `keadaan`, `kerangka`, `spanduk`, `ikon(nama)`;
      - `grafik.js`: `sparkline(nilai, opsi)` dan `muatChart()` (malas);
      - `peta.js`: `muatLeaflet()` (malas);
-     - `utama.js`: router hash, status kecamatan (localStorage dan `?kec=`), tema, lembar pemilih kecamatan (daftar dan cari dulu; peta SVG ditambah di T3), dan `document.body.dataset.siap = "1"` setelah render.
-  5. Tampilan:
-     - Beranda dirender lengkap sesuai 7.3 dengan data contoh;
-     - halaman lain berupa kerangka dengan judul dan `.keadaan--kosong` "Segera hadir";
-     - data contoh memakai amplop `contoh: true` sehingga UI menampilkan lencana CONTOH.
-  6. `cek_tampilan.ps1`:
-     - jalankan `python -m http.server 8765 -d hasil/situs` di latar;
-     - Edge headless (`C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe` [D]) dengan `--headless=new --screenshot=<png> --window-size=<w,h> --virtual-time-budget=4000 <url>` untuk rute dan tema yang diberikan, simpan ke `_tmp/layar/`;
-     - `--dump-dom` untuk memeriksa `data-siap="1"` dan menghitung `.kartu`;
-     - hentikan server;
-     - cetak ringkasan.
-  7. `cek_situs.py`:
-     - ukuran gzip HTML+CSS+JS awal ≤ 60 KB;
+     - `utama.js`: router hash, status kecamatan (localStorage dan `?kec=`), tema, lembar pemilih kecamatan (daftar dan cari dulu; peta SVG ditambah di T3), dan `document.body.dataset.siap = "1"` setelah render. Parameter (`contoh`, `kec`, `tema`) dibaca dari query di dalam hash. Router memuat `js/tampilan/<nama>.js` lewat import dinamis; modul yang belum ada menampilkan keadaan "Segera hadir", bukan galat.
+  5. `skrip/cek_situs.py`:
+     - ukuran gzip HTML+CSS+JS awal ≤ 60 KB (Leaflet dan Chart.js dimuat malas, tidak dihitung);
      - semua `import` dan `src` lokal ada;
      - tidak ada URL eksternal di HTML/JS selain host tile OSM dan tautan keluar di data;
-     - tidak ada `innerHTML` yang memakai variabel tanpa `esc(`. Ini heuristik regex; hasilnya peringatan, bukan galat.
-  8. Tangkap layar 3 kondisi: `#/?contoh=1` 390×844 terang, 390×844 `&tema=gelap`, dan 1280×800 terang. Lihat gambarnya dan perbaiki bila perlu (maksimal 2 putaran).
-  9. Tulis `referensi/komponen.md` (≤ 80 baris): kelas, fungsi JS beserta parameternya, dan pola menambah tampilan baru.
-- **Kriteria selesai:**
+     - tidak ada `innerHTML` yang memakai variabel tanpa `esc(`, dan tidak ada kata Inggris umum di string UI. Keduanya heuristik regex; hasilnya peringatan, bukan galat.
+- **Langkah T2B:**
+  1. `data/contoh/*.json` (amplop `contoh: true`) untuk tiap modul yang dipakai Beranda. Untuk harga, salin struktur `hasil/situs/data/harga.json` asli ke `data/contoh/harga.json`; berkas aslinya tidak diubah.
+  2. Tampilan: Beranda dirender lengkap sesuai 7.3 dengan data contoh (lencana CONTOH tampil); enam halaman lain berupa kerangka dengan judul dan `.keadaan--kosong` "Segera hadir".
+  3. `cek_tampilan.ps1`:
+     - jalankan `python -m http.server 8765 -d hasil/situs` di latar (`Start-Process`, catat PID);
+     - Edge headless (`C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe` [T], ada di PC pemilik) dengan `--headless=new --disable-gpu --hide-scrollbars --user-data-dir=$env:TEMP\edge_t2 --virtual-time-budget=4000 --window-size=<w,h> --screenshot=<png> <url>`, simpan ke `_tmp/layar/`;
+     - `--dump-dom` ke berkas untuk memeriksa `data-siap="1"` dan menghitung `.kartu`;
+     - hentikan server di blok `finally`;
+     - cetak ringkasan.
+  4. Tangkap layar 3 kondisi: `#/?contoh=1` 390×844 terang, 390×844 `&tema=gelap`, dan 1280×800 terang. Lihat PNG dengan `read_file` dan perbaiki bila perlu (maksimal 2 putaran).
+  5. Tulis `referensi/komponen.md` (≤ 80 baris): kelas, fungsi JS beserta parameternya, dan pola menambah tampilan baru.
+- **Kriteria selesai T2A:** `python skrip/cek_situs.py` lulus (peringatan boleh); `gaya.css` ≤ 18 KB; `vendor/VERSI.txt` ada; semua berkas hasil T2A ada.
+- **Kriteria selesai T2B:**
   - `cek_tampilan.ps1` melaporkan `siap=1` untuk ketiga kondisi;
   - `cek_situs.py` lulus;
   - ketiga PNG ada;
-  - tidak ada teks Inggris di UI.
-- **Anggaran:** 10 kredit, BATAS 45 alat.
+  - tidak ada teks Inggris di UI;
+  - `komponen.md` ≤ 80 baris.
+- **Anggaran:** T2A BATAS 25 alat, T2B BATAS 35 alat (total 60; perkiraan kredit 4 + 6 [D]).
 - **Titik berhenti:**
   - Edge headless tidak bisa menangkap layar: lanjutkan dengan `--dump-dom` saja dan laporkan.
-  - Unduhan ikon gagal: buat 10 ikon inti secara manual dalam sprite dan laporkan.
-- **Jangan:** mengambil data nyata, membuat peta, menambah pustaka, mengubah token warna di luar nilai rencana (kecuali gagal kontras, dengan dicatat), membuat lebih dari 2 putaran revisi visual, atau membuat service worker.
+  - Unduhan ikon gagal 2 kali: buat 10 ikon inti secara manual dalam sprite dan laporkan.
+- **Jangan:** mengambil data nyata, membuat peta, menambah pustaka, mengubah token warna di luar nilai rencana (kecuali gagal kontras, dengan dicatat), membuat lebih dari 2 putaran revisi visual, membuat service worker, atau menyentuh data dan skrip harga.
 
-**Prompt T2:**
+**Prompt T2A:**
 ```
 [BLOK UMUM]
-TAHAP 2: Sistem desain dan kerangka situs. BATAS = 45 alat.
-Baca rencana bagian 7 (semua subbagian) dan 6.3 saja, lalu kerjakan langkah "Tahap 2".
-Nilai token di 7.2 wajib dipakai apa adanya. Beranda dirender lengkap dengan data contoh
-(amplop contoh:true); halaman lain berupa kerangka.
-Kriteria selesai: skrip/cek_tampilan.ps1 → siap=1 untuk #/?contoh=1 (390×844 terang dan gelap,
-1280×800); skrip/cek_situs.py lulus; referensi/komponen.md ≤ 80 baris. Revisi visual maksimal 2
-putaran. Commit per langkah (vendor, css, html+js, tampilan, alat cek, komponen.md).
+TAHAP 2A: Fondasi situs (vendor, CSS, HTML, JS inti, cek statis). BATAS = 25 alat.
+Prasyarat: T0 dan T1 selesai. Semua jalur situs relatif ke hasil/situs/ kecuali skrip/.
+Baca saja: rencana 6.3, 7.1 dan 7.2, 7.6 (cari judulnya dengan Select-String), lalu bagian
+"Tahap 2" di bagian 8: hanya "Langkah T2A" dan "Kriteria selesai T2A".
+Kerjakan langkah T2A 1-5, commit per butir (vendor, css, html, js, cek_situs).
+Nilai token di 7.2 wajib dipakai apa adanya. Jangan membuat tampilan lengkap, data contoh,
+peta SVG, atau service worker; jangan menyentuh data dan skrip harga.
+Kriteria selesai: python skrip/cek_situs.py lulus; gaya.css <= 18 KB; vendor/VERSI.txt ada.
+Push: tidak.
 ```
 
+**Prompt T2B:**
+```
+[BLOK UMUM]
+TAHAP 2B: Tampilan, data contoh, alat cek visual, komponen.md. BATAS = 35 alat.
+Prasyarat: T2A selesai (cek memori core). Semua jalur situs relatif ke hasil/situs/.
+Baca saja: referensi/komponen.md bila ada, rencana 7.3-7.5, skema 6.4.1-6.4.8 dan subbagian
+6.4.x yang dipakai Beranda menurut 7.3, lalu bagian "Tahap 2" di bagian 8: hanya
+"Langkah T2B" dan "Kriteria selesai T2B".
+Kerjakan langkah T2B 1-5, commit per butir (data contoh, tampilan, cek_tampilan, perbaikan
+visual, komponen.md). Revisi visual maksimal 2 putaran.
+Kriteria selesai: cek_tampilan.ps1 melaporkan siap=1 untuk #/?contoh=1 pada 390x844 terang,
+390x844 gelap, dan 1280x800 terang; python skrip/cek_situs.py lulus; ketiga PNG ada;
+komponen.md <= 80 baris.
+Setelah semua kriteria lulus: git pull --rebase origin main, lalu git push origin main.
+```
 ---
 
 ### Tahap 3: Wilayah, kode, batas, dan peta SVG
@@ -1467,7 +1530,7 @@ Asumsi: 1 kredit setara kira-kira 4–5 panggilan alat Sonnet dengan konteks kec
 ### 10.1 Teknis
 | Risiko | Mitigasi |
 |---|---|
-| Sumber Indonesia memblokir IP runner Actions (luar negeri) [?] | Diuji di T0. **Rencana Jaringan B:** jalankan `jalankan_semua.py` dari PC pemilik lewat Windows Task Scheduler (tiap 3 jam saat PC menyala), commit data cepat ke cabang `data`, dan workflow deploy membaca dari cabang itu. Ini menambah sekitar 1 tahap (5 kredit). Alternatif: Cloudflare Worker sebagai proksi, tetapi lokasi egress-nya [?]. |
+| Sumber Indonesia memblokir IP runner Actions (luar negeri) [?] | Diuji di T0. **Rencana Jaringan B:** jalankan `jalankan_semua.py` dari PC pemilik lewat Windows Task Scheduler (tiap 3 jam saat PC menyala), commit data cepat ke cabang `data`, dan workflow deploy membaca dari cabang itu. Ini menambah sekitar 1 tahap (5 kredit). Alternatif: Cloudflare Worker sebagai proksi, tetapi lokasi egress-nya [?]. **Status 2026-11-16 [T]:** harga dan Overpass timeout dari Actions; BMKG, gempa, Open-Meteo, dan Wikipedia terjangkau. Rencana Jaringan B dijalankan untuk harga (`skrip/jadwal_harga.ps1`, tugas `DasborHarga`). Penyebab timeout belum terbukti sebagai blokir IP (panggilan lokal juga timeout sesaat). |
 | API berubah atau mati | Validasi skema di `cek_data.py`. Versi lama dipertahankan dengan status `basi`. Alur kegagalan di Actions memicu email ke pemilik [D: notifikasi jadwal dikirim ke pengguna yang terakhir mengubah cron]. |
 | Pembatasan laju | Jeda 1,5 detik per host, backoff, 12 permintaan per 3 jam ke BMKG |
 | Jadwal Actions tertunda atau dinonaktifkan setelah 60 hari tanpa aktivitas [D] | Commit data harga harian menjaga repo tetap aktif. Bila memakai jalur C, pemilik commit pembaruan CSV minimal tiap bulan. Halaman Status menampilkan umur data. |
