@@ -1,0 +1,6 @@
+ada Authorization: tidak; ada Cookie: tidak
+curl --url 'https://api-panelhargav2.badanpangan.go.id/api/front/harga-pangan-informasi?province_id=13&city_id=196&level_harga_id=3' \
+  -H 'Accept: application/json' \
+  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36' \
+  -H 'Origin: https://panelharga.badanpangan.go.id' \
+  -H 'Referer: https://panelharga.badanpangan.go.id/'
