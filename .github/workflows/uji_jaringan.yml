@@ -17,6 +17,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Jalankan uji jaringan
         run: python3 skrip/uji_jaringan.py --keluaran referensi/uji_jaringan_actions.txt
+      - name: SEMENTARA uji harga T1
+        run: python3 skrip/uji_harga.py
       - name: Commit hasil
         run: |
           git config user.name "github-actions[bot]"
