@@ -1,0 +1,27 @@
+name: Uji jaringan
+
+on:
+  push:
+    paths:
+      - skrip/uji_jaringan.py
+      - .github/workflows/uji_jaringan.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  uji:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Jalankan uji jaringan
+        run: python3 skrip/uji_jaringan.py --keluaran referensi/uji_jaringan_actions.txt
+      - name: Commit hasil
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add referensi/uji_jaringan_actions.txt
+          git commit -m "t0: hasil uji jaringan dari Actions" || exit 0
+          git pull --rebase
+          git push

@@ -1,0 +1,10 @@
+data/mentah/
+_tmp/
+_arsip/
+__pycache__/
+*.pyc
+hasil/situs/data/cuaca.json
+hasil/situs/data/hujan_7hari.json
+hasil/situs/data/udara.json
+hasil/situs/data/gempa.json
+hasil/situs/data/status.json

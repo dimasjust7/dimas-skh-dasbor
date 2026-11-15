@@ -1,0 +1,10 @@
+# uji_jaringan 2026-11-15T22:15:41+07:00 | Windows-11-10.0.26200-SP0 | python 3.12.10 | GITHUB_ACTIONS=tidak
+# label	kode	waktu	ukuran	100 karakter pertama
+bmkg_prakiraan	200	842 ms	7550 B	{"data":[{"lokasi":{"adm1":"33","adm2":"33.11","adm3":"33.11.01","adm4":"33.11.01.2001","desa":"Grog
+bmkg_autogempa	200	141 ms	412 B	{"Infogempa":{"gempa":{"Tanggal":"15 Nov 2026","Jam":"04:24:20 WIB","DateTime":"2026-11-14T21:24:20+
+openmeteo_forecast	200	983 ms	4301 B	{"latitude":-7.697715,"longitude":110.834045,"generationtime_ms":0.04076957702636719,"utc_offset_sec
+openmeteo_airquality	200	781 ms	3152 B	{"latitude":-7.699997,"longitude":110.80002,"generationtime_ms":0.0902414321899414,"utc_offset_secon
+overpass	502	718 ms	534 B	# 502 Gateway Timeout  This Overpass API server is currently at capacity. All query workers are busy
+panel_harga	200	420 ms	72 B	{"status":"error","message":"period date tidak boleh kosong","code":400}
+pihps	200	3141 ms	313613 B	  <!DOCTYPE html>  <html dir="ltr" lang="en-US">  <head>        <meta http-equiv="content-type" cont
+wikipedia	200	108 ms	3534 B	{"type":"standard","title":"Kabupaten Sukoharjo","displaytitle":"<span lang=\"id\" dir=\"ltr\"><span
