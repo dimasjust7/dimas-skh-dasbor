@@ -1,0 +1,15 @@
+id,nama,kategori,satuan,id_sumber,sumber
+gkp_petani,GKP Tingkat Petani,pokok,kg,2,panelharga_bapanas
+gkg_penggilingan,GKG Tingkat Penggilingan,pokok,kg,4,panelharga_bapanas
+beras_medium,Beras Medium Penggilingan,pokok,kg,5,panelharga_bapanas
+beras_premium,Beras Premium Penggilingan,pokok,kg,6,panelharga_bapanas
+jagung_pipilan,Jagung Pipilan Kering,pokok,kg,7,panelharga_bapanas
+kedelai_lokal,Kedelai Biji Kering (Lokal),pokok,kg,8,panelharga_bapanas
+bawang_merah,Bawang Merah,bumbu,kg,9,panelharga_bapanas
+cabai_merah_keriting,Cabai Merah Keriting,bumbu,kg,10,panelharga_bapanas
+cabai_merah_besar,Cabai Merah Besar,bumbu,kg,125,panelharga_bapanas
+cabai_rawit_merah,Cabai Rawit Merah,bumbu,kg,11,panelharga_bapanas
+sapi_hidup,Sapi (Hidup),protein,kg,12,panelharga_bapanas
+ayam_ras_hidup,Ayam Ras Pedaging (Hidup),protein,kg,13,panelharga_bapanas
+telur_ayam_ras,Telur Ayam Ras,protein,kg,14,panelharga_bapanas
+gula_petani_pabrik,Gula Konsumsi di Petani/Pabrik Gula,minyak_gula,kg,148,panelharga_bapanas
