@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dasbor Sukoharjo</title>
+<meta name="description" content="Harga pangan, cuaca, wilayah, dan layanan publik Kabupaten Sukoharjo dalam satu halaman. Bukan situs resmi pemerintah.">
+<meta name="theme-color" content="#1C7556">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231C7556'/%3E%3Cpath d='M21.5 11.2c-.9-1.5-2.7-2.4-5-2.4-2.8 0-4.7 1.4-4.7 3.4 0 4.6 9.8 2.3 9.8 7.4 0 2.2-2.1 3.8-5.2 3.8-2.4 0-4.4-.9-5.5-2.7' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="gaya.css">
+<script>
+/* Terapkan tema sebelum render agar tidak berkedip. */
+(function(){try{var m=location.hash.match(/[?&]tema=(gelap|terang)/),t=m?m[1]:localStorage.getItem('tema');if(t==='gelap'||t==='terang')document.documentElement.dataset.tema=t}catch(e){}})();
+</script>
+</head>
+<body>
+<header class="kepala">
+  <a class="merek" href="#/" aria-label="Dasbor Sukoharjo, ke Beranda"><svg class="logo" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="currentColor"/><path d="M21.5 11.2c-.9-1.5-2.7-2.4-5-2.4-2.8 0-4.7 1.4-4.7 3.4 0 4.6 9.8 2.3 9.8 7.4 0 2.2-2.1 3.8-5.2 3.8-2.4 0-4.4-.9-5.5-2.7" fill="none" style="stroke:var(--utama-di-atas)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="merek__nama">Dasbor Sukoharjo</span></a>
+  <button class="chip" id="tombol-kec" type="button" aria-haspopup="dialog">Pilih kecamatan</button>
+  <button class="tombol tombol--ikon" id="tombol-cari" type="button" aria-label="Cari"><svg class="ikon" width="20" height="20" aria-hidden="true"><use href="ikon/sprite.svg#i-search"/></svg></button>
+  <button class="tombol tombol--ikon" id="tombol-tema" type="button" aria-label="Ganti tema"><svg class="ikon" width="20" height="20" aria-hidden="true"><use href="ikon/sprite.svg#i-moon"/></svg></button>
+</header>
+<div id="spanduk"></div>
+<main id="isi" tabindex="-1"></main>
+<footer class="kaki">
+  <p>Dasbor Sukoharjo adalah proyek mandiri dan bukan situs resmi pemerintah. Sumber data tercantum pada setiap kartu.</p>
+  <p><a href="#/tentang">Tentang</a> · <a href="#/status">Status data</a></p>
+</footer>
+<nav class="nav" aria-label="Menu utama">
+  <a href="#/" data-rute="beranda"><span class="nav__pil"><svg class="ikon" width="24" height="24" aria-hidden="true"><use href="ikon/sprite.svg#i-house"/></svg></span><span>Beranda</span></a>
+  <a href="#/harga" data-rute="harga"><span class="nav__pil"><svg class="ikon" width="24" height="24" aria-hidden="true"><use href="ikon/sprite.svg#i-shopping-basket"/></svg></span><span>Harga</span></a>
+  <a href="#/cuaca" data-rute="cuaca"><span class="nav__pil"><svg class="ikon" width="24" height="24" aria-hidden="true"><use href="ikon/sprite.svg#i-cloud-sun"/></svg></span><span>Cuaca</span></a>
+  <a href="#/wilayah" data-rute="wilayah"><span class="nav__pil"><svg class="ikon" width="24" height="24" aria-hidden="true"><use href="ikon/sprite.svg#i-map"/></svg></span><span>Wilayah</span></a>
+  <a href="#/layanan" data-rute="layanan"><span class="nav__pil"><svg class="ikon" width="24" height="24" aria-hidden="true"><use href="ikon/sprite.svg#i-life-buoy"/></svg></span><span>Layanan</span></a>
+</nav>
+<div id="lembar" class="lembar-latar" hidden></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script type="module" src="js/utama.js"></script>
+</body>
+</html>
