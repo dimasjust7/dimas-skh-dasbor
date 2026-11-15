@@ -10,7 +10,7 @@ from datetime import datetime, timedelta, timezone
 WIB = timezone(timedelta(hours=7))
 AKAR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PATH_STATUS = os.path.join(AKAR, "hasil", "situs", "data", "status.json")
-URL_REPO = os.environ.get("URL_REPO", "https://github.com/OWNER/dasbor_sukoharjo")
+URL_REPO = os.environ.get("URL_REPO", "https://github.com/dimasjust7/dimas-skh-dasbor")
 USER_AGENT = "DasborSukoharjo/1.0 (+%s)" % URL_REPO
 TIMEOUT = 20
 JEDA_ULANG = (2, 4, 8)
