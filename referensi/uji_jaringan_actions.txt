@@ -1,10 +1,10 @@
-# uji_jaringan 2026-11-15T22:30:44+07:00 | Linux-7.0.0-1019-azure-x86_64-with-glibc2.43 | python 3.14.4 | GITHUB_ACTIONS=true
+# uji_jaringan 2026-11-15T23:46:24+07:00 | Linux-7.0.0-1019-azure-x86_64-with-glibc2.43 | python 3.14.4 | GITHUB_ACTIONS=true
 # label	kode	waktu	ukuran	100 karakter pertama
-bmkg_prakiraan	200	482 ms	7566 B	{"data":[{"lokasi":{"adm1":"33","adm2":"33.11","adm3":"33.11.01","adm4":"33.11.01.2001","desa":"Grog
-bmkg_autogempa	200	445 ms	412 B	{"Infogempa":{"gempa":{"Tanggal":"15 Nov 2026","Jam":"04:24:20 WIB","DateTime":"2026-11-14T21:24:20+
-openmeteo_forecast	200	135 ms	4302 B	{"latitude":-7.697715,"longitude":110.834045,"generationtime_ms":0.032067298889160156,"utc_offset_se
-openmeteo_airquality	200	480 ms	3153 B	{"latitude":-7.699997,"longitude":110.80002,"generationtime_ms":0.12540817260742188,"utc_offset_seco
-overpass	ERR	25831 ms	42 B	TimeoutError: The read operation timed out
-panel_harga	ERR	25341 ms	35 B	URLError: <urlopen error timed out>
-pihps	200	4655 ms	313613 B	  <!DOCTYPE html>  <html dir="ltr" lang="en-US">  <head>        <meta http-equiv="content-type" cont
-wikipedia	200	107 ms	3534 B	{"type":"standard","title":"Kabupaten Sukoharjo","displaytitle":"<span lang=\"id\" dir=\"ltr\"><span
+bmkg_prakiraan	200	443 ms	8414 B	{"data":[{"lokasi":{"adm1":"33","adm2":"33.11","adm3":"33.11.01","adm4":"33.11.01.2001","desa":"Grog
+bmkg_autogempa	200	366 ms	359 B	{"Infogempa":{"gempa":{"Tanggal":"15 Nov 2026","Jam":"22:41:15 WIB","DateTime":"2026-11-15T15:41:15+
+openmeteo_forecast	200	154 ms	4302 B	{"latitude":-7.697715,"longitude":110.834045,"generationtime_ms":0.032901763916015625,"utc_offset_se
+openmeteo_airquality	200	513 ms	3151 B	{"latitude":-7.699997,"longitude":110.80002,"generationtime_ms":0.095367431640625,"utc_offset_second
+overpass	502	488 ms	534 B	# 502 Gateway Timeout  This Overpass API server is currently at capacity. All query workers are busy
+panel_harga	ERR	25244 ms	35 B	URLError: <urlopen error timed out>
+pihps	200	4363 ms	313613 B	  <!DOCTYPE html>  <html dir="ltr" lang="en-US">  <head>        <meta http-equiv="content-type" cont
+wikipedia	200	134 ms	3534 B	{"type":"standard","title":"Kabupaten Sukoharjo","displaytitle":"<span lang=\"id\" dir=\"ltr\"><span
