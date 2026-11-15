@@ -1,0 +1,181 @@
+/* Dasbor Sukoharjo. Urutan: token, reset, tata letak, komponen, utilitas, gerak. */
+
+/* ===== Token (rencana 7.2) ===== */
+:root{
+--latar:#F5F7F4;--permukaan:#FFFFFF;--permukaan-2:#EDF1EC;--garis:#DCE3DA;
+--teks:#17211C;--teks-2:#526058;--teks-3:#7A867F;
+--utama:#1C7556;--utama-di-atas:#FFFFFF;--utama-lemah:#E2F0E8;
+--aksen:#E3A21A;--aksen-lemah:#FBF0D6;
+--info:#2C6CB0;--info-lemah:#E3EEF9;
+--sukses:#2E7D32;--sukses-lemah:#E5F2E6;
+--peringatan:#A86200;--peringatan-lemah:#FDF0DC;
+--bahaya:#C0392B;--bahaya-lemah:#FBE6E3;
+--seri-5:#7A5AC8;
+--pet-1:#E2F0E8;--pet-2:#B9DDCB;--pet-3:#86C4A6;--pet-4:#4FA57F;--pet-5:#1C7556;
+--bayang-1:0 1px 2px rgba(17,26,21,.06),0 1px 3px rgba(17,26,21,.08);
+--bayang-2:0 8px 24px rgba(17,26,21,.14);
+--font:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",Arial,sans-serif;
+--uk-1:12px/16px;--uk-2:14px/20px;--uk-3:16px/24px;--uk-4:18px/26px;--uk-5:22px/28px;--uk-6:28px/34px;--uk-7:40px/44px;
+--r-1:4px;--r-2:8px;--r-3:12px;--r-4:16px;--r-5:24px;--r-6:32px;--r-7:48px;
+--sudut-1:8px;--sudut-2:12px;--sudut-3:16px;--sudut-penuh:999px;
+--gerak-cepat:120ms;--gerak:180ms;--kurva:cubic-bezier(.2,.8,.2,1);
+}
+[data-tema="gelap"]{
+--latar:#0E1412;--permukaan:#151D1A;--permukaan-2:#1C2622;--garis:#283430;
+--teks:#E6ECE8;--teks-2:#A1AEA7;--teks-3:#6F7C75;
+--utama:#4CC38A;--utama-di-atas:#0E1412;--utama-lemah:#173A2B;
+--aksen:#F2BD4B;--aksen-lemah:#3A2F12;
+--info:#6EA8E6;--info-lemah:#16263A;
+--sukses:#5CC27A;--sukses-lemah:#163222;
+--peringatan:#F0B44C;--peringatan-lemah:#3A2A10;
+--bahaya:#F27A6B;--bahaya-lemah:#3D1A17;
+--pet-1:#173A2B;--pet-2:#1F5A40;--pet-3:#2E7D59;--pet-4:#3FA374;--pet-5:#4CC38A;
+--bayang-1:none;--bayang-2:0 8px 24px rgba(0,0,0,.5);
+}
+@media (prefers-color-scheme:dark){
+:root:not([data-tema="terang"]){
+--latar:#0E1412;--permukaan:#151D1A;--permukaan-2:#1C2622;--garis:#283430;
+--teks:#E6ECE8;--teks-2:#A1AEA7;--teks-3:#6F7C75;
+--utama:#4CC38A;--utama-di-atas:#0E1412;--utama-lemah:#173A2B;
+--aksen:#F2BD4B;--aksen-lemah:#3A2F12;
+--info:#6EA8E6;--info-lemah:#16263A;
+--sukses:#5CC27A;--sukses-lemah:#163222;
+--peringatan:#F0B44C;--peringatan-lemah:#3A2A10;
+--bahaya:#F27A6B;--bahaya-lemah:#3D1A17;
+--pet-1:#173A2B;--pet-2:#1F5A40;--pet-3:#2E7D59;--pet-4:#3FA374;--pet-5:#4CC38A;
+--bayang-1:none;--bayang-2:0 8px 24px rgba(0,0,0,.5);
+}}
+
+/* ===== Reset ringkas ===== */
+*,::before,::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;color-scheme:light dark}
+[data-tema="terang"]{color-scheme:light}
+[data-tema="gelap"]{color-scheme:dark}
+body{margin:0;background:var(--latar);color:var(--teks);font:400 var(--uk-3) var(--font);font-variant-numeric:tabular-nums;padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+h1,h2,h3,p,ul{margin:0}
+h1,h2,h3{letter-spacing:-.01em}
+a{color:var(--utama)}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0;padding:0}
+img,svg{max-width:100%}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--utama);outline-offset:2px}
+.ikon{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* ===== Tata letak (rencana 7.1) ===== */
+.kepala{position:sticky;top:0;z-index:10;height:56px;display:flex;align-items:center;gap:var(--r-2);padding:0 var(--r-4);background:var(--permukaan);border-bottom:1px solid var(--garis)}
+.merek{display:flex;align-items:center;gap:var(--r-2);color:var(--teks);text-decoration:none;font:600 var(--uk-4) var(--font)}
+.logo{width:32px;height:32px;display:block;color:var(--utama)}
+.merek__nama{display:none}
+#tombol-kec{margin-left:auto;min-width:0;max-width:62%}
+.nav{position:fixed;z-index:10;left:0;right:0;bottom:0;display:flex;height:calc(64px + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);background:var(--permukaan);border-top:1px solid var(--garis)}
+.nav a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:44px;color:var(--teks-2);text-decoration:none;font:500 var(--uk-1) var(--font)}
+.nav .ikon{width:24px;height:24px}
+.nav__pil{display:grid;place-items:center;width:56px;height:32px;border-radius:var(--sudut-penuh)}
+.nav [aria-current=page]{color:var(--utama)}
+.nav [aria-current=page] .nav__pil{background:var(--utama-lemah)}
+#isi{max-width:1200px;margin:0 auto;padding:var(--r-4);min-height:60vh;outline:0}
+#isi>*{animation:masuk var(--gerak) var(--kurva)}
+.kisi{display:grid;gap:12px}
+.kaki{max-width:1200px;margin:0 auto;padding:var(--r-5) var(--r-4);color:var(--teks-2);font:400 var(--uk-1) var(--font)}
+.kaki p+p{margin-top:var(--r-2)}
+@media (min-width:600px){
+.kepala{padding:0 var(--r-5)}
+.merek__nama{display:inline}
+#tombol-kec{margin-left:var(--r-4)}
+#tombol-cari{margin-left:auto}
+#isi{padding:var(--r-5)}
+.kisi{grid-template-columns:repeat(2,1fr)}
+.kartu--hero,.kartu--lebar{grid-column:span 2}
+.kaki{padding:var(--r-5)}
+}
+@media (min-width:960px){
+body{padding:0 0 0 88px}
+.nav{top:0;right:auto;width:88px;height:auto;flex-direction:column;justify-content:flex-start;gap:var(--r-2);padding:var(--r-4) 0;border-top:0;border-right:1px solid var(--garis)}
+.nav a{flex:none;width:100%;height:64px}
+.kisi{grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--r-4)}
+}
+
+/* ===== Komponen (rencana 7.2) ===== */
+.judul-halaman{font:600 var(--uk-5) var(--font);margin:var(--r-2) 0 var(--r-4)}
+.kartu{display:flex;flex-direction:column;gap:var(--r-3);min-width:0;padding:var(--r-4);background:var(--permukaan);border:1px solid var(--garis);border-radius:var(--sudut-3);box-shadow:var(--bayang-1)}
+.kartu__kepala{display:flex;align-items:center;gap:var(--r-2)}
+.kartu__ikon{display:grid;place-items:center;width:32px;height:32px;border-radius:var(--sudut-1);background:var(--utama-lemah);color:var(--utama)}
+.kartu__judul{font:600 var(--uk-2) var(--font);color:var(--teks-2);letter-spacing:0}
+.kartu__meta{display:flex;align-items:center;flex-wrap:wrap;gap:var(--r-1);font:400 var(--uk-1) var(--font);color:var(--teks-2)}
+.segar{display:inline-block;flex:none;width:8px;height:8px;margin-right:2px;border-radius:50%;background:var(--sukses)}
+.segar--segar{background:var(--sukses)}
+.segar--lama{background:var(--peringatan)}
+.segar--basi{background:var(--bahaya)}
+.lencana{display:inline-flex;align-items:center;height:24px;padding:0 var(--r-2);border-radius:var(--sudut-penuh);font:600 var(--uk-1) var(--font);white-space:nowrap;background:var(--permukaan-2);color:var(--teks-2)}
+.lencana--naik,.lencana--bahaya{background:var(--bahaya-lemah);color:var(--bahaya)}
+.lencana--turun{background:var(--sukses-lemah);color:var(--sukses)}
+.lencana--tetap{background:var(--permukaan-2);color:var(--teks-2)}
+.lencana--info{background:var(--info-lemah);color:var(--info)}
+.lencana--peringatan,.lencana--contoh{background:var(--peringatan-lemah);color:var(--peringatan)}
+.chip{display:inline-flex;align-items:center;gap:var(--r-1);height:36px;padding:0 12px;border:1px solid var(--garis);border-radius:var(--sudut-1);background:var(--permukaan);font:500 var(--uk-2) var(--font);white-space:nowrap}
+.chip span{overflow:hidden;text-overflow:ellipsis}
+.chip--aktif{background:var(--utama-lemah);border-color:var(--utama);color:var(--utama)}
+.tombol{display:inline-flex;align-items:center;justify-content:center;gap:var(--r-2);min-height:44px;padding:0 var(--r-4);border:1px solid transparent;border-radius:var(--sudut-2);font:600 var(--uk-3) var(--font);text-decoration:none;transition:transform var(--gerak-cepat) var(--kurva)}
+.tombol:active,.chip:active{transform:scale(.98)}
+.tombol--utama{background:var(--utama);color:var(--utama-di-atas)}
+.tombol--sekunder{background:var(--permukaan);border-color:var(--garis);color:var(--teks)}
+.tombol--teks{color:var(--utama)}
+.tombol--besar{min-height:52px}
+.tombol--ikon{width:44px;padding:0;color:var(--teks-2)}
+.segmen{display:inline-flex;padding:var(--r-1);background:var(--permukaan-2);border-radius:var(--sudut-2)}
+.segmen button{min-height:36px;padding:0 12px;border-radius:var(--sudut-1);font:500 var(--uk-2) var(--font);color:var(--teks-2)}
+.segmen [aria-pressed=true]{background:var(--permukaan);color:var(--teks);box-shadow:var(--bayang-1)}
+.isian{width:100%;height:44px;padding:0 12px;border:1px solid var(--garis);border-radius:var(--sudut-1);background:var(--permukaan-2)}
+.isian::placeholder{color:var(--teks-3)}
+.daftar{list-style:none;padding:0}
+.baris{display:flex;align-items:center;gap:var(--r-3);width:100%;min-height:56px;padding:0 var(--r-1);border-bottom:1px solid var(--garis);color:var(--teks);text-align:left;text-decoration:none}
+.baris__teks{flex:1;min-width:0}
+.baris--pilih{color:var(--utama);font-weight:600}
+.lembar-latar{position:fixed;inset:0;z-index:30;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.4)}
+.lembar{width:100%;max-width:560px;max-height:85vh;overflow:auto;padding:var(--r-2) var(--r-4) calc(var(--r-4) + env(safe-area-inset-bottom));background:var(--permukaan);border-radius:var(--sudut-3) var(--sudut-3) 0 0;box-shadow:var(--bayang-2);animation:naik 220ms var(--kurva)}
+.lembar::before{content:"";display:block;width:32px;height:4px;margin:0 auto var(--r-2);border-radius:2px;background:var(--garis)}
+.lembar__kepala{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--r-2)}
+.lembar__judul{font:600 var(--uk-4) var(--font)}
+.spanduk{display:flex;align-items:flex-start;gap:var(--r-2);padding:10px var(--r-4);background:var(--info-lemah);font:400 var(--uk-2) var(--font)}
+.spanduk .ikon{color:var(--info)}
+.spanduk--peringatan{background:var(--peringatan-lemah)}
+.spanduk--peringatan .ikon{color:var(--peringatan)}
+.spanduk--bahaya{background:var(--bahaya-lemah)}
+.spanduk--bahaya .ikon{color:var(--bahaya)}
+.strip-jam{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}
+.strip-jam>*{flex:none;width:64px;display:flex;flex-direction:column;align-items:center;gap:var(--r-1);scroll-snap-align:start;font:500 var(--uk-2) var(--font)}
+.kerangka{border-radius:var(--sudut-3);background:linear-gradient(90deg,var(--permukaan-2) 25%,var(--garis) 50%,var(--permukaan-2) 75%) 0 0/200% 100%;animation:kilau 1.2s linear infinite}
+.keadaan{display:flex;flex-direction:column;align-items:center;gap:var(--r-2);padding:var(--r-6) var(--r-4);text-align:center;color:var(--teks-2);font:400 var(--uk-2) var(--font)}
+.keadaan .ikon{width:32px;height:32px}
+.keadaan__judul{font:600 var(--uk-3) var(--font);color:var(--teks)}
+.keadaan--galat .ikon{color:var(--bahaya)}
+.keadaan--luring .ikon{color:var(--peringatan)}
+.tabel{width:100%;border-collapse:collapse;font:400 var(--uk-2) var(--font)}
+.tabel th,.tabel td{padding:var(--r-2) var(--r-3);text-align:left}
+.tabel th{position:sticky;top:0;background:var(--permukaan);color:var(--teks-2);font-weight:600}
+.tabel tbody tr:nth-child(even){background:var(--permukaan-2)}
+.tabel .kanan{text-align:right}
+.toast{position:fixed;left:50%;bottom:calc(80px + env(safe-area-inset-bottom));z-index:40;max-width:calc(100% - 32px);padding:10px var(--r-4);border-radius:var(--sudut-2);background:var(--teks);color:var(--latar);font:500 var(--uk-2) var(--font);transform:translateX(-50%);opacity:0;pointer-events:none;transition:opacity var(--gerak) var(--kurva)}
+.toast.tampil{opacity:1}
+@media (min-width:960px){.toast{bottom:var(--r-5)}}
+
+/* ===== Utilitas (maks. 15) ===== */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.kanan{text-align:right}
+.tengah{text-align:center}
+.teks-2{color:var(--teks-2)}
+.angka-besar{font:700 var(--uk-6) var(--font)}
+.potong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.baris-flex{display:flex;align-items:center;gap:var(--r-2)}
+.mt-2{margin-top:var(--r-2)}
+.mt-4{margin-top:var(--r-4)}
+
+/* ===== Gerak ===== */
+@keyframes masuk{from{opacity:0;transform:translateY(4px)}}
+@keyframes naik{from{transform:translateY(100%)}}
+@keyframes kilau{to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){
+*,::before,::after{animation-duration:0ms!important;animation-iteration-count:1!important;transition-duration:0ms!important}
+.kerangka{animation:none}
+}
