@@ -1,0 +1,359 @@
+{
+    "status": "success",
+    "message": "Berhasil mendapatkan data",
+    "data": {
+        "current_page": 1,
+        "data": [
+            {
+                "id": 189,
+                "nama": "Kab. Banjarnegara",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.04",
+                "latlong": "-7.3794368,109.6163185",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 187,
+                "nama": "Kab. Banyumas",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.02",
+                "latlong": "-7.4832133,109.140438",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 210,
+                "nama": "Kab. Batang",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.25",
+                "latlong": "-7.032551,109.7986045",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 201,
+                "nama": "Kab. Blora",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.16",
+                "latlong": "-7.012244,111.3798928",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 194,
+                "nama": "Kab. Boyolali",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.09",
+                "latlong": "-7.4317773,110.6883536",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 214,
+                "nama": "Kab. Brebes",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.29",
+                "latlong": "-6.9591793,108.902683",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 186,
+                "nama": "Kab. Cilacap",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.01",
+                "latlong": "-7.6982991,109.023521",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 206,
+                "nama": "Kab. Demak",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.21",
+                "latlong": "-6.9238879,110.6645683",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 200,
+                "nama": "Kab. Grobogan",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.15",
+                "latlong": "-7.1541672,110.9506636",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 205,
+                "nama": "Kab. Jepara",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.20",
+                "latlong": "-6.5804981,110.6789833",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 198,
+                "nama": "Kab. Karanganyar",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.13",
+                "latlong": "-7.6387228,111.0460407",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 190,
+                "nama": "Kab. Kebumen",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.05",
+                "latlong": "-7.6709292,109.6608012",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 209,
+                "nama": "Kab. Kendal",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.24",
+                "latlong": "-7.0265442,110.1879106",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 195,
+                "nama": "Kab. Klaten",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.10",
+                "latlong": "-7.657893,110.6645683",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 204,
+                "nama": "Kab. Kudus",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.19",
+                "latlong": "-6.7726186,110.8791343",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 193,
+                "nama": "Kab. Magelang",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.08",
+                "latlong": "-7.4305237,110.2832217",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 203,
+                "nama": "Kab. Pati",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.18",
+                "latlong": "-6.7449635,111.0460407",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 211,
+                "nama": "Kab. Pekalongan",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.26",
+                "latlong": "-7.0517128,109.6163185",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 212,
+                "nama": "Kab. Pemalang",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.27",
+                "latlong": "-7.0599422,109.4259114",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 188,
+                "nama": "Kab. Purbalingga",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.03",
+                "latlong": "-7.3058578,109.4259114",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 191,
+                "nama": "Kab. Purworejo",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.06",
+                "latlong": "-7.6964509,109.9989416",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 202,
+                "nama": "Kab. Rembang",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.17",
+                "latlong": "-6.7093739,111.3413151",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 207,
+                "nama": "Kab. Semarang",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.22",
+                "latlong": "-7.1764785,110.4738762",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 199,
+                "nama": "Kab. Sragen",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.14",
+                "latlong": "-7.43027,111.0091855",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 196,
+                "nama": "Kab. Sukoharjo",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.11",
+                "latlong": "-7.6813417,110.8320626",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 213,
+                "nama": "Kab. Tegal",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.28",
+                "latlong": "-6.9902371,109.140438",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 208,
+                "nama": "Kab. Temanggung",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.23",
+                "latlong": "-7.3162486,110.175507",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 197,
+                "nama": "Kab. Wonogiri",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.12",
+                "latlong": "-7.8846484,111.0460407",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 192,
+                "nama": "Kab. Wonosobo",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.07",
+                "latlong": "-7.3632094,109.9001796",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 215,
+                "nama": "Kota Magelang",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.71",
+                "latlong": "-7.4797342,110.2176941",
+                "is_ihk": 0,
+                "is_produsen": "n"
+            },
+            {
+                "id": 219,
+                "nama": "Kota Pekalongan",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.75",
+                "latlong": "-6.8898362,109.6745916",
+                "is_ihk": 0,
+                "is_produsen": "n"
+            },
+            {
+                "id": 217,
+                "nama": "Kota Salatiga",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.73",
+                "latlong": "-7.3305234,110.5084366",
+                "is_ihk": 0,
+                "is_produsen": "n"
+            },
+            {
+                "id": 218,
+                "nama": "Kota Semarang",
+                "province_id": 13,
+                "ibu_kota": true,
+                "national_id": "33.74",
+                "latlong": "-6.9818006,110.4120729",
+                "is_ihk": 0,
+                "is_produsen": "y"
+            },
+            {
+                "id": 216,
+                "nama": "Kota Surakarta",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.72",
+                "latlong": "-7.5695177,110.8250266",
+                "is_ihk": 0,
+                "is_produsen": "n"
+            },
+            {
+                "id": 220,
+                "nama": "Kota Tegal",
+                "province_id": 13,
+                "ibu_kota": false,
+                "national_id": "33.76",
+                "latlong": "-6.8588473,109.1047663",
+                "is_ihk": 0,
+                "is_produsen": "n"
+            }
+        ]
+    }
+}

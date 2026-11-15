@@ -1,0 +1,11 @@
+ada Authorization: tidak; ada Cookie: tidak
+curl --url 'https://api-panelhargav2.badanpangan.go.id/api/cities?province_id=13' \
+  -H 'Accept: application/json' \
+  -H 'Accept-Language: en-US,en;q=0.9,id-ID;q=0.8,id;q=0.7' \
+  -H 'Connection: keep-alive' \
+  -H 'Origin: https://panelharga.badanpangan.go.id' \
+  -H 'Referer: https://panelharga.badanpangan.go.id/' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Sec-Fetch-Mode: cors' \
+  -H 'Sec-Fetch-Site: same-site' \
+  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36'
