@@ -1,15 +1,25 @@
 id,nama,kategori,satuan,id_sumber,sumber
-gkp_petani,GKP Tingkat Petani,pokok,kg,2,panelharga_bapanas
-gkg_penggilingan,GKG Tingkat Penggilingan,pokok,kg,4,panelharga_bapanas
-beras_medium,Beras Medium Penggilingan,pokok,kg,5,panelharga_bapanas
-beras_premium,Beras Premium Penggilingan,pokok,kg,6,panelharga_bapanas
-jagung_pipilan,Jagung Pipilan Kering,pokok,kg,7,panelharga_bapanas
-kedelai_lokal,Kedelai Biji Kering (Lokal),pokok,kg,8,panelharga_bapanas
-bawang_merah,Bawang Merah,bumbu,kg,9,panelharga_bapanas
-cabai_merah_keriting,Cabai Merah Keriting,bumbu,kg,10,panelharga_bapanas
-cabai_merah_besar,Cabai Merah Besar,bumbu,kg,125,panelharga_bapanas
-cabai_rawit_merah,Cabai Rawit Merah,bumbu,kg,11,panelharga_bapanas
-sapi_hidup,Sapi (Hidup),protein,kg,12,panelharga_bapanas
-ayam_ras_hidup,Ayam Ras Pedaging (Hidup),protein,kg,13,panelharga_bapanas
-telur_ayam_ras,Telur Ayam Ras,protein,kg,14,panelharga_bapanas
-gula_petani_pabrik,Gula Konsumsi di Petani/Pabrik Gula,minyak_gula,kg,148,panelharga_bapanas
+beras_premium,Beras Premium,pokok,kg,27,panelharga_bapanas_konsumen
+beras_medium,Beras Medium,pokok,kg,28,panelharga_bapanas_konsumen
+beras_sphp,Beras SPHP,pokok,kg,109,panelharga_bapanas_konsumen
+beras_medium_non_sphp,Beras Medium Non SPHP,pokok,kg,165,panelharga_bapanas_konsumen
+jagung_peternak,Jagung Tk Peternak,pokok,kg,102,panelharga_bapanas_konsumen
+kedelai_impor,Kedelai Biji Kering (Impor),pokok,kg,29,panelharga_bapanas_konsumen
+tepung_terigu_curah,Tepung Terigu (Curah),pokok,kg,40,panelharga_bapanas_konsumen
+tepung_terigu_kemasan,Tepung Terigu Kemasan,pokok,kg,108,panelharga_bapanas_konsumen
+bawang_merah,Bawang Merah,bumbu,kg,30,panelharga_bapanas_konsumen
+bawang_putih,Bawang Putih Bonggol,bumbu,kg,31,panelharga_bapanas_konsumen
+cabai_merah_keriting,Cabai Merah Keriting,bumbu,kg,32,panelharga_bapanas_konsumen
+cabai_merah_besar,Cabai Merah Besar,bumbu,kg,126,panelharga_bapanas_konsumen
+cabai_rawit_merah,Cabai Rawit Merah,bumbu,kg,33,panelharga_bapanas_konsumen
+garam,Garam Konsumsi,bumbu,kg,107,panelharga_bapanas_konsumen
+daging_sapi,Daging Sapi Murni,protein,kg,34,panelharga_bapanas_konsumen
+daging_ayam_ras,Daging Ayam Ras,protein,kg,35,panelharga_bapanas_konsumen
+telur_ayam_ras,Telur Ayam Ras,protein,kg,36,panelharga_bapanas_konsumen
+ikan_kembung,Ikan Kembung,protein,kg,104,panelharga_bapanas_konsumen
+ikan_tongkol,Ikan Tongkol,protein,kg,105,panelharga_bapanas_konsumen
+ikan_bandeng,Ikan Bandeng,protein,kg,106,panelharga_bapanas_konsumen
+gula_pasir,Gula Konsumsi,minyak_gula,kg,37,panelharga_bapanas_konsumen
+minyak_goreng_kemasan,Minyak Goreng Kemasan,minyak_gula,liter,38,panelharga_bapanas_konsumen
+minyak_goreng_curah,Minyak Goreng Curah,minyak_gula,liter,101,panelharga_bapanas_konsumen
+minyakita,Minyakita,minyak_gula,liter,127,panelharga_bapanas_konsumen
